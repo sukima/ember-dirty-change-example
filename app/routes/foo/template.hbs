@@ -1,0 +1,32 @@
+{{#let this.model.unloader as |unloader|}}
+  <article class="columns {{if unloader.hasChanges "dirty" "info"}}">
+    {{#if unloader.showConfirmation}}
+      <Modals::AbandonChangesConfirmation
+        @title="Abandon Foo route changes?"
+        @manager={{unloader.confirmationModal}}
+      />
+    {{/if}}
+
+    <section>
+      <h2>
+        Foo route
+        {{#if unloader.hasChanges}}
+          &mdash; with dirty changes
+        {{/if}}
+      </h2>
+
+      <p>Make a change in the form and attempt to transition away.</p>
+
+      <ExampleForm {{on "input" unloader.registerChanges}}>
+        {{#let (unique-id) as |id|}}
+          <label for={{id}}>Last Name:</label>
+          <input id={{id}} name="lastName">
+        {{/let}}
+      </ExampleForm>
+    </section>
+
+    <section>
+      <img src="https://picsum.photos/200/200?random=1">
+    </section>
+  </article>
+{{/let}}

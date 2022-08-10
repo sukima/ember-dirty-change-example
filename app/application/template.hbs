@@ -1,0 +1,38 @@
+<header>
+  <h1>Example dirty change tracking</h1>
+
+  <nav>
+    <ul>
+      <li><LinkTo class="transitionable" @route="routes.foo">Foo route</LinkTo></li>
+      <li><LinkTo class="transitionable" @route="routes.bar">Bar route</LinkTo></li>
+      <li>
+        <button type="button" class="btn-link" {{on "click" this.refreshPage}}>
+          Refresh page (browser's beforeunload)
+        </button>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="https://github.com/sukima/ember-dirty-change-tracking">
+          View the source code on GitHub
+        </a>
+      </li>
+      <li>
+        <a href="https://css-tricks.com/a-css-approach-to-trap-focus-inside-of-an-element/">
+          Reference material on modal dialogs
+        </a>
+      </li>
+      <li>
+        <a href="https://discord.gg/emberjs">
+          Ask <code>Sukima#0660</code> a question on Discord
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  {{outlet}}
+</main>
+
+<div id="application-modal" aria-live="assertive"></div>

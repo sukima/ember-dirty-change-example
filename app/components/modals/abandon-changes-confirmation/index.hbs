@@ -1,0 +1,31 @@
+{{#in-element (query-selector "#application-modal")}}
+  <div class="dialog-overlay"></div>
+  <dialog
+    ...attributes
+    open=true
+    {{trap-tabbing}}
+    {{on-document "click" @manager.cancel}}
+    {{on-keyboard "Escape" @manager.cancel}}
+  >
+    <h1 class="header">
+      <span class="title">{{@title}}</span>
+      <button class="dismiss" type="button" {{on "click" @manager.cancel}}>
+        &cross;
+      </button>
+    </h1>
+
+    <p class="body">
+      Leaving this page will loose any changes you've made!
+      Are you sure you would like to leave?
+    </p>
+
+    <p class="footer">
+      <button type="button" {{on "click" @manager.cancel}} {{autofocus}}>
+        No, stay here.
+      </button>
+      <button class="danger" type="button" {{on "click" @manager.confirm}}>
+        Yes, abandon changes!
+      </button>
+    </p>
+  </dialog>
+{{/in-element}}
