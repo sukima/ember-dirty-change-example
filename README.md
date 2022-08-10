@@ -1,7 +1,8 @@
 # ember-dirty-change-example
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is a running example of my [Blog Post](https://tritarget.org/#Easy%20dirty%20change%20confirmations%20in%20Ember) regarding dirty tracking in Ember.
+
+See it running [in a DEMO](https://sukima.github.io/ember-dirty-change-example).
 
 ## Prerequisites
 
