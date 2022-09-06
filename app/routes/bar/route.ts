@@ -18,8 +18,14 @@ export default class BarRoute extends Route {
   async willTransition(transition: Transition) {
     let { unloader } = this.modelFor(this.routeName) as Model;
     if (!unloader.hasChanges) return;
-    transition.abort();
+    await transition.abort().catch(ignoreTransitionAbortedError);
     let { reason } = await unloader.confirmAbandonChanges();
-    if (reason === 'confirmed') transition.retry();
+    if (reason === 'confirmed')
+      await transition.retry().catch(ignoreTransitionAbortedError);
   }
+}
+
+function ignoreTransitionAbortedError(error: unknown) {
+  let name = error instanceof Error && error.name;
+  if (name !== 'TransitionAborted') throw error;
 }
