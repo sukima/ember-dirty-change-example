@@ -18,14 +18,8 @@ export default class FooRoute extends Route {
   async willTransition(transition: Transition) {
     let { unloader } = this.modelFor(this.routeName) as Model;
     if (!unloader.hasChanges) return;
-    await transition.abort().catch(ignoreTransitionAbortedError);
+    transition.abort();
     let { reason } = await unloader.confirmAbandonChanges();
-    if (reason === 'confirmed')
-      await transition.retry().catch(ignoreTransitionAbortedError);
+    if (reason === 'confirmed') transition.retry();
   }
-}
-
-function ignoreTransitionAbortedError(error: unknown) {
-  let name = error instanceof Error && error.name;
-  if (name !== 'TransitionAborted') throw error;
 }

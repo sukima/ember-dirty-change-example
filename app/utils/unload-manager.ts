@@ -18,7 +18,7 @@ export function enableBeforeUnload() {
 }
 
 export default class UnloadManager {
-  readonly confirmationModal = new ModalManager();
+  confirmationModal = new ModalManager();
   @tracked hasChanges = false;
 
   constructor(private _window: WindowDependency = window) {}
