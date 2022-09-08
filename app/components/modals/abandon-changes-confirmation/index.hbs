@@ -1,8 +1,6 @@
 {{#in-element (query-selector "#application-modal")}}
   <div class="dialog-overlay"></div>
-  <dialog
-    ...attributes
-    open=true
+  <dialog ...attributes open
     {{trap-tabbing}}
     {{on-document "click" @manager.cancel}}
     {{on-keyboard "Escape" @manager.cancel}}
