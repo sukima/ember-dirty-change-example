@@ -1,9 +1,9 @@
 {{#in-element (query-selector "#application-modal")}}
-  <div class="dialog-overlay"></div>
-  <dialog ...attributes open
-    {{trap-tabbing}}
+  <dialog
+    ...attributes
+    {{open-dialog}}
+    {{on "close" @manager.cancel}}
     {{on-document "click" @manager.cancel}}
-    {{on-keyboard "Escape" @manager.cancel}}
   >
     <h1 class="header">
       <span class="title">{{@title}}</span>
@@ -18,7 +18,8 @@
     </p>
 
     <p class="footer">
-      <button type="button" {{on "click" @manager.cancel}} {{autofocus}}>
+      {{! template-lint-disable no-autofocus-attribute }}
+      <button type="button" autofocus {{on "click" @manager.cancel}}>
         No, stay here.
       </button>
       <button class="danger" type="button" {{on "click" @manager.confirm}}>

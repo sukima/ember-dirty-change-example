@@ -62,6 +62,7 @@ dialog {
   z-index: 1001;
 }
 
+dialog::backdrop,
 .dialog-overlay {
   position: fixed;
   top: 0;

@@ -6,7 +6,7 @@ export interface ModalConfirmation {
 }
 
 export default class ModalManager {
-  #resolve = (result: ModalConfirmation) => {};
+  #resolve: (result: ModalConfirmation) => void = () => {};
   @tracked isOpen = false;
 
   @action
@@ -14,7 +14,7 @@ export default class ModalManager {
     return new Promise<ModalConfirmation>((resolve) => {
       this.#resolve = resolve;
       this.isOpen = true;
-    }).finally(() => this.isOpen = false);
+    }).finally(() => (this.isOpen = false));
   }
 
   @action
